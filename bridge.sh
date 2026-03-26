@@ -35,7 +35,7 @@ MAX_DIST="${4:-0.6}"  # cosine distance threshold
 if [ -z "$NODE_A" ] || [ -z "$NODE_B" ]; then
   # Pick two random nodes that are far apart
   echo "Picking two distant nodes..."
-  NODES=$(edge raw "SELECT subject FROM live_edges WHERE subject NOT LIKE 'task:%' AND subject NOT LIKE 'e:%' AND subject NOT LIKE 'game:%' AND phase IN ('fluid', 'salt') GROUP BY subject HAVING COUNT(*) >= 2 ORDER BY random() LIMIT 10" 2>/dev/null | grep -v 'subject' | grep -v '^--' | head -10 | shuf | head -2)
+  NODES=$(edge raw "SELECT subject FROM live_edges WHERE subject NOT LIKE 'task:%' AND subject NOT LIKE 'e:%' AND subject NOT LIKE 'game:%' AND subject NOT LIKE 'go9:%' AND subject NOT LIKE 'connect5:%' AND subject NOT LIKE 'sf-schema:%' AND subject NOT LIKE 'this-session%' AND subject NOT LIKE 'this-pass%' AND phase IN ('fluid', 'salt') GROUP BY subject HAVING COUNT(*) >= 2 ORDER BY random() LIMIT 2" 2>/dev/null | grep -v 'subject' | grep -v '^--' | sed 's/^ *//' | grep -v '^$')
   NODE_A=$(echo "$NODES" | head -1 | xargs)
   NODE_B=$(echo "$NODES" | tail -1 | xargs)
 fi
