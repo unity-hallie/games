@@ -25,6 +25,12 @@ Based on the tomato/hot-dog problem: "is a hot dog a sandwich?"
 Start at a random node in rhizome. Follow edges by feel. See where you end up.
 The walk itself deposits edges (walked-from X to Y).
 
+### bridge (bridge.sh)
+Navigate between two semantic points in the graph. Each hop must follow
+an existing edge or create a new one. You must get semantically closer to
+the destination with each step (unless following an existing edge — those are
+free curves). Find or forge a path through semantic space.
+
 ### 20-questions (twenty-questions.sh)
 One player picks a node from the graph. The other asks yes/no questions.
 The questions and answers are edges. The game is the graph playing itself.
